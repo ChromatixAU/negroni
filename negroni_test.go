@@ -1,4 +1,4 @@
-package gomiddleware
+package negroni
 
 import (
 	"net/http"
