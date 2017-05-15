@@ -22,4 +22,4 @@
 //    n.UseHandler(mux)
 //    n.Run(":3000")
 //  }
-package negroni
+package gomiddleware
