@@ -64,16 +64,11 @@ func (s *Static) ServeHTTP(rw http.ResponseWriter, r *http.Request, next http.Ha
 	// try to serve index file
 	if fi.IsDir() {
 		// redirect if missing trailing slash
+    // Commented out, redirection shouldn't be handled here
 		/* if !strings.HasSuffix(r.URL.Path, "/") {
 			http.Redirect(rw, r, r.URL.Path+"/", http.StatusFound)
 			return
 		} */
-
-    // redirect if has trailing slash
-		if strings.HasSuffix(r.URL.Path, "/") {
-			http.Redirect(rw, r, strings.TrimSuffix( r.URL.Path, "/" ), http.StatusFound )
-			return
-		}
 
 		file = path.Join(file, s.IndexFile)
 		f, err = s.Dir.Open(file)
