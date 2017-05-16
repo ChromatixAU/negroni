@@ -71,7 +71,7 @@ func (s *Static) ServeHTTP(rw http.ResponseWriter, r *http.Request, next http.Ha
 
     // redirect if has trailing slash
 		if strings.HasSuffix(r.URL.Path, "/") {
-			http.Redirect(rw, r, strings.TrimSuffix( r.URL.Path, "/" ), http.StatusTemporaryRedirect )
+			http.Redirect(rw, r, strings.TrimSuffix( r.URL.Path, "/" ), http.StatusFound )
 			return
 		}
 
