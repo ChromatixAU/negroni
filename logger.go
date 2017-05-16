@@ -51,15 +51,6 @@ func NewLogger() *Logger {
 	return logger
 }
 
-func NewLoggerWithStream(w io.Writer) *Logger {
-  if w == nil {
-    w = os.Stdout
-  }
-	logger := &Logger{ALogger: log.New(w, "[negroni] ", 0), dateFormat: LoggerDefaultDateFormat}
-	logger.SetFormat(LoggerDefaultFormat)
-	return logger
-}
-
 func (l *Logger) SetFormat(format string) {
 	l.template = template.Must(template.New("negroni_parser").Parse(format))
 }
