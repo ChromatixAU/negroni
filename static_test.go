@@ -91,8 +91,26 @@ func TestStaticOptionsServeIndex(t *testing.T) {
 	}
 
 	n.ServeHTTP(response, req)
+	expect(t, response.Code, http.StatusFound)
+}
+
+func TestStaticOptionsServeIndex2(t *testing.T) {
+	response := httptest.NewRecorder()
+
+	n := New()
+	s := NewStatic(http.Dir("."))
+	s.IndexFile = "negroni.go"
+	n.Use(s)
+
+	req, err := http.NewRequest("GET", "http://localhost:3000", nil)
+	if err != nil {
+		t.Error(err)
+	}
+
+	n.ServeHTTP(response, req)
 	expect(t, response.Code, http.StatusOK)
 }
+
 
 func TestStaticOptionsPrefix(t *testing.T) {
 	response := httptest.NewRecorder()
